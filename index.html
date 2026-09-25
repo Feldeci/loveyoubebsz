@@ -232,7 +232,7 @@
                 <button id="enterBookBtn" class="group relative bg-gradient-to-r from-blush-600 via-blush-500 to-roseDust hover:from-blush-500 hover:to-blush-600 text-white font-serif text-lg sm:text-xl px-10 py-4 rounded-full shadow-[0_10px_30px_rgba(189,115,115,0.5)] transition-all duration-300 transform hover:scale-105 flex items-center gap-3 mx-auto border border-blush-300/60 overflow-hidden">
                     <span class="absolute inset-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
                     <i class="fa-solid fa-heart text-white animate-heartbeat"></i>
-                    <span id="openingBtnLabel" class="relative z-10 font-semibold tracking-wider">Ha egyedül, magányosan éreznéd magad, ne feledd mi szeratunk<3     ➔</span>
+                    <span id="openingBtnLabel" class="relative z-10 font-semibold tracking-wider">Ha egyedül, magányosan éreznéd magad, ne feledd mi szeretunk<3     ➔</span>
                 </button>
             </div>
             
@@ -258,7 +258,7 @@
 
                 <div class="flex items-center gap-3">
                     <div id="countdownContainer" class="hidden xl:flex items-center gap-2 bg-blush-50 border border-blush-200/60 px-3 py-1.5 rounded-full text-xs text-sepiaBrown">
-                        <span id="countdownLabelText" class="font-medium italic">Találkozásunkig:</span>
+                        <span id="countdownLabelText" class="font-medium italic">A következő találkozásunkig már csak<3</span>
                         <div class="flex items-center gap-1 font-semibold text-blush-600">
                             <span id="cdDays">00</span>d <span id="cdHours">00</span>h <span id="cdMins">00</span>m <span id="cdSecs">00</span>s
                         </div>
@@ -604,13 +604,13 @@
         const defaultAppState = {
             settings: {
                 countdownDate: "2026-12-31T20:00:00",
-                countdownLabel: "Találkozásunkig:",
+                countdownLabel: "A következő találkozásunkig már csak<3:",
                 mainTitle: "Akik mindig hazavárnak<3",
                 mainSubtitle: "Veled minden egyes pillanat egy álommal ér fel, kedvesem! ❤️ Te vagy a legcsodálatosabb ember az egész földkerekségen, köszönjük... ❤️",
                 brandTitle: "Szerelmes Emlékeink",
                 openingTitle: "Emlékeink tárháza 💌",
                 openingSubtitle: '"Ahol a legszebb pillanataink örökké élnek és ragyognak..."',
-                openingBtnText: "Ha egyedül, magányosan éreznéd magad, ne feledd mi szeratunk<3     ➔",
+                openingBtnText: "Ha egyedül, magányosan éreznéd magad, ne feledd mi szeretunk<3     ➔",
                 openingFooter: "Készült tiszta szívvel, csak neked ❤️",
                 lettersTitle: "Szerelmes levelek tiszta szívből neked, Édesem! 💌",
                 lettersSubtitle: "Szívből, csókjaimmal pecsételve, forró öleléssel mellékelve<3",
@@ -828,7 +828,7 @@
             document.getElementById('headerBrandTitle').innerText = s.brandTitle || "Szerelmes Emlékeink";
             document.getElementById('mainWelcomeTitle').innerText = s.mainTitle || "Akik mindig hazavárnak<3";
             document.getElementById('mainWelcomeSubtitle').innerText = s.mainSubtitle || "";
-            document.getElementById('countdownLabelText').innerText = s.countdownLabel || "Találkozásunkig:";
+            document.getElementById('countdownLabelText').innerText = s.countdownLabel || "A következő találkozásunkig már csak<3:";
 
             const opTitle = document.getElementById('openingTitleText');
             const opSub = document.getElementById('openingSubtitleText');
@@ -837,7 +837,7 @@
 
             if (opTitle) opTitle.innerText = s.openingTitle || "Emlékeink tárháza 💌";
             if (opSub) opSub.innerText = s.openingSubtitle || '"Ahol a legszebb pillanataink örökké élnek és ragyognak..."';
-            if (opBtn) opBtn.innerText = s.openingBtnText || "Ha egyedül, magányosan éreznéd magad, ne feledd mi szeratunk<3     ➔";
+            if (opBtn) opBtn.innerText = s.openingBtnText || "Ha egyedül, magányosan éreznéd magad, ne feledd mi szeretunk<3     ➔";
             if (opFoot) opFoot.innerText = s.openingFooter || "Készült tiszta szívvel, csak neked ❤️";
 
             const letTitle = document.getElementById('lettersViewTitle');
