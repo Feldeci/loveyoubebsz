@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="hu" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story ❤️ - Digital Memory Book</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blush: { 50: '#fdf8f8', 100: '#f9f0f0', 200: '#f2e1e1', 300: '#e5c5c5', 400: '#d49d9d', 500: '#bd7373', 600: '#a35a5a' },
+                        cream: '#faf7f2',
+                        warmwhite: '#fffdf9',
+                        sage: { 50: '#f3f6f4', 100: '#e2e9e4', 500: '#8ba391', 600: '#6f8774' },
+                        roseDust: '#c99797',
+                        sepiaBrown: '#4a3b32',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        hand: ['"Caveat"', 'cursive'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #faf7f2;
+            color: #4a3b32;
+            overflow-x: hidden;
+        }
+        .paper-texture {
+            background-color: #fffdf9;
+            background-image: radial-gradient(#e5c5c5 0.5px, transparent 0.5px), radial-gradient(#d49d9d 0.5px, #faf7f2 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+
+        .book-viewport {
+            perspective: 2200px;
+            perspective-origin: 50% 50%;
+        }
+
+        .photo-album-book {
+            position: relative;
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 1.25rem;
+            box-shadow:
+                0 4px 6px -1px rgba(0,0,0,0.05),
+                0 10px 25px -3px rgba(74, 59, 50, 0.15),
+                -4px 4px 0px #f2e1e1,
+                -8px 8px 0px #e5c5c5,
+                -12px 12px 20px rgba(74, 59, 50, 0.22);
+            transform-style: preserve-3d;
+        }
+
+        .tape {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 110px;
+            height: 26px;
+            background-color: rgba(242, 225, 225, 0.85);
+            border-left: 2px dashed rgba(189, 115, 115, 0.35);
+            border-right: 2px dashed rgba(189, 115, 115, 0.35);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            z-index: 40;
+        }
+
+        .flip-leaf {
+            position: absolute;
+            inset: 0;
+            z-index: 35;
+            transform-style: preserve-3d;
+            pointer-events: none;
+            border-radius: 1.25rem;
+            will-change: transform;
+        }
+
+        .flip-leaf-front, .flip-leaf-back {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 1.25rem;
+            box-shadow: 0 10px 30px rgba(74, 59, 50, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .flip-leaf-back {
+            transform: rotateY(180deg);
+        }
+
+        .leaf-shine {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.45) 50%, rgba(0,0,0,0.2) 100%);
+            pointer-events: none;
+            border-radius: 1.25rem;
+        }
+
+        @keyframes flipNextAnim {
+            0% { transform: rotateY(0deg); box-shadow: 0 10px 20px rgba(74, 59, 50, 0.15); }
+            50% { transform: rotateY(-90deg) translateZ(50px) scale(0.96); box-shadow: -40px 25px 50px rgba(74, 59, 50, 0.45); }
+            100% { transform: rotateY(-180deg); box-shadow: 0 10px 20px rgba(74, 59, 50, 0.15); }
+        }
+
+        @keyframes flipPrevAnim {
+            0% { transform: rotateY(0deg); box-shadow: 0 10px 20px rgba(74, 59, 50, 0.15); }
+            50% { transform: rotateY(90deg) translateZ(50px) scale(0.96); box-shadow: 40px 25px 50px rgba(74, 59, 50, 0.45); }
+            100% { transform: rotateY(180deg); box-shadow: 0 10px 20px rgba(74, 59, 50, 0.15); }
+        }
+
+        .animate-flip-next {
+            transform-origin: left center;
+            animation: flipNextAnim 0.75s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
+        }
+
+        .animate-flip-prev {
+            transform-origin: right center;
+            animation: flipPrevAnim 0.75s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+        }
+        .animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        .animate-float-slow { animation: floatSlow 4s ease-in-out infinite; }
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 15px rgba(255,107,129,0.6)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 35px rgba(255,117,140,0.9)); transform: scale(1.08); }
+        }
+        .animate-pulse-glow { animation: pulseGlow 2.5s ease-in-out infinite; }
+        .floating-heart {
+            position: absolute;
+            color: rgba(189, 115, 115, 0.35);
+            animation: riseUp 7s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes riseUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #faf7f2; }
+        ::-webkit-scrollbar-thumb { background: #d49d9d; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #bd7373; }
+    </style>
+</head>
+<body class="h-full flex flex-col selection:bg-blush-200 selection:text-sepiaBrown relative">
+
+    <div id="particlesContainer" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <div id="app" class="flex-1 flex flex-col relative z-10">
+        
+        <div id="openingAnimation" class="fixed inset-0 w-screen h-screen z-50 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#2d1246] via-[#12071f] to-[#08030d] flex flex-col items-center justify-between py-8 px-4 md:py-12 md:px-12 transition-all duration-1000 text-cream overflow-hidden">
+            
+            <canvas id="animationCanvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
+
+            <div class="w-full max-w-6xl flex justify-between items-center z-10">
+                <div class="flex items-center gap-2 text-blush-300 font-serif italic text-sm">
+                    <i class="fa-solid fa-wand-magic-sparkles animate-pulse"></i> Varázslatos Mesevilág
+                </div>
+                <button id="skipAnimationBtn" class="text-xs uppercase tracking-widest text-cream/80 hover:text-white bg-white/10 hover:bg-white/20 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 transition shadow-lg flex items-center gap-2">
+                    <span>Kihagyás</span> <i class="fa-solid fa-forward"></i>
+                </button>
+            </div>
+            
+            <div class="flex-1 flex flex-col items-center justify-center text-center w-full max-w-2xl my-auto z-10 relative">
+                <div class="relative w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 mb-6 flex items-center justify-center animate-float-slow">
+                    <div class="absolute inset-0 bg-blush-500/20 rounded-full blur-3xl animate-pulse"></div>
+                    <svg viewBox="0 0 400 400" class="w-full h-full animate-pulse-glow drop-shadow-[0_0_30px_rgba(255,117,140,0.6)]" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="magicHeartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ff758c" />
+                                <stop offset="50%" stop-color="#ff7eb3" />
+                                <stop offset="100%" stop-color="#7928ca" />
+                            </linearGradient>
+                        </defs>
+                        <ellipse cx="200" cy="200" rx="170" ry="60" fill="none" stroke="rgba(255,215,0,0.3)" stroke-width="2" transform="rotate(-25 200 200)" />
+                        <ellipse cx="200" cy="200" rx="150" ry="50" fill="none" stroke="rgba(255,117,140,0.4)" stroke-width="1.5" transform="rotate(35 200 200)" />
+                        <g transform="translate(0, 20)">
+                            <path d="M 200 260 Q 140 230 60 250 L 60 140 Q 140 120 200 160 Z" fill="#fffdf9" opacity="0.95" />
+                            <path d="M 200 260 Q 260 230 340 250 L 340 140 Q 260 120 200 160 Z" fill="#fffdf9" opacity="0.95" />
+                            <line x1="200" y1="160" x2="200" y2="260" stroke="#d49d9d" stroke-width="4" />
+                        </g>
+                        <path d="M 200 130 C 180 100, 120 110, 120 150 C 120 190, 160 210, 200 240 C 240 210, 280 190, 280 150 C 280 110, 220 100, 200 130 Z" fill="url(#magicHeartGrad)" class="animate-heartbeat" />
+                        <g fill="#ffd166">
+                            <circle cx="130" cy="90" r="4" class="animate-twinkle" />
+                            <circle cx="280" cy="110" r="3" class="animate-twinkle" style="animation-delay: 0.7s;" />
+                            <circle cx="110" cy="220" r="3.5" class="animate-twinkle" style="animation-delay: 1.2s;" />
+                            <circle cx="290" cy="210" r="4.5" class="animate-twinkle" style="animation-delay: 0.4s;" />
+                        </g>
+                    </svg>
+                </div>
+                
+                <h1 id="openingTitleText" class="font-serif text-3xl sm:text-4xl md:text-5xl text-cream font-bold mb-3 tracking-wide drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">Emlékeink tárháza 💌</h1>
+                <p id="openingSubtitleText" class="font-serif italic text-blush-200 text-base sm:text-lg md:text-xl mb-8 max-w-lg mx-auto leading-relaxed drop-shadow-md">"Ahol a legszebb pillanataink örökké élnek és ragyognak..."</p>
+                
+                <button id="enterBookBtn" class="group relative bg-gradient-to-r from-blush-600 via-blush-500 to-roseDust hover:from-blush-500 hover:to-blush-600 text-white font-serif text-lg sm:text-xl px-10 py-4 rounded-full shadow-[0_10px_30px_rgba(189,115,115,0.5)] transition-all duration-300 transform hover:scale-105 flex items-center gap-3 mx-auto border border-blush-300/60 overflow-hidden">
+                    <span class="absolute inset-0 w-full h-full bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+                    <i class="fa-solid fa-heart text-white animate-heartbeat"></i>
+                    <span id="openingBtnLabel" class="relative z-10 font-semibold tracking-wider">Ha egyedül, magányosan éreznéd magad, ne feledd mi szeratunk<3     ➔</span>
+                </button>
+            </div>
+            
+            <div class="w-full text-center text-xs text-cream/60 font-serif italic pb-2 z-10 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-sparkles text-blush-400"></i> <span id="openingFooterText">Készült tiszta szívvel, csak neked ❤️</span> <i class="fa-solid fa-sparkles text-blush-400"></i>
+            </div>
+        </div>
+
+        <header class="bg-warmwhite/90 backdrop-blur-md border-b border-blush-200 sticky top-0 z-40 px-4 py-3 shadow-xs">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <button id="homeBtn" class="flex items-center gap-2 font-serif text-xl font-bold text-sepiaBrown hover:text-blush-600 transition">
+                        <i class="fa-solid fa-heart text-blush-500 animate-heartbeat"></i>
+                        <span id="headerBrandTitle">Szerelmes Emlékeink</span>
+                    </button>
+                    <span id="currentViewIndicator" class="text-xs uppercase tracking-wider bg-sage-100 text-sage-600 px-2.5 py-1 rounded-full font-medium hidden md:inline-block">Főmenü</span>
+                </div>
+
+                <div class="flex items-center bg-blush-50 border border-blush-200 rounded-full p-1 text-xs font-semibold">
+                    <button id="navAlbumsTab" class="px-4 py-1.5 rounded-full bg-blush-600 text-white shadow-xs transition">Albumok</button>
+                    <button id="navLettersTab" class="px-4 py-1.5 rounded-full text-sepiaBrown/70 hover:text-sepiaBrown transition">Szerelmes Levelek 💌</button>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div id="countdownContainer" class="hidden xl:flex items-center gap-2 bg-blush-50 border border-blush-200/60 px-3 py-1.5 rounded-full text-xs text-sepiaBrown">
+                        <span id="countdownLabelText" class="font-medium italic">Találkozásunkig:</span>
+                        <div class="flex items-center gap-1 font-semibold text-blush-600">
+                            <span id="cdDays">00</span>d <span id="cdHours">00</span>h <span id="cdMins">00</span>m <span id="cdSecs">00</span>s
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 bg-cream border border-blush-200 px-3 py-1.5 rounded-full">
+                        <button id="musicToggleBtn" class="text-blush-600 hover:text-blush-700 transition w-6 h-6 flex items-center justify-center" title="Zene Lejátszása">
+                            <i class="fa-solid fa-music"></i>
+                        </button>
+                        <span id="nowPlayingTitle" class="text-xs text-sepiaBrown/80 truncate max-w-[90px] md:max-w-[120px]">Háttérzene</span>
+                        <button id="musicNextBtn" class="text-sepiaBrown/60 hover:text-sepiaBrown text-xs" title="Következő">
+                            <i class="fa-solid fa-forward-step"></i>
+                        </button>
+                    </div>
+
+                    <button id="openAdminBtn" class="bg-sepiaBrown text-cream px-3 py-1.5 rounded-full text-xs font-medium hover:bg-sepiaBrown/90 transition shadow-xs flex items-center gap-1.5" title="Admin">
+                        <i class="fa-solid fa-gear"></i>
+                        <span class="hidden sm:inline">Beállítások</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main id="mainViewport" class="flex-1 flex flex-col relative">
+            
+            <div id="albumMenuView" class="flex-1 flex flex-col p-6 md:p-12 max-w-7xl mx-auto w-full">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <h2 id="mainWelcomeTitle" class="font-serif text-4xl md:text-5xl font-bold text-sepiaBrown mb-3">Akik mindig hazavárnak<3</h2>
+                    <p id="mainWelcomeSubtitle" class="font-serif text-lg text-sepiaBrown/70 italic">Veled minden egyes pillanat egy álommal ér fel, kedvesem! ❤️ Te vagy a legcsodálatosabb ember az egész földkerekségen, köszönjük... ❤️</p>
+                    <div class="w-24 h-0.5 bg-blush-300 mx-auto mt-4"></div>
+                </div>
+
+                <div id="albumsGridContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pb-16"></div>
+            </div>
+
+            <div id="loveLettersView" class="hidden flex-1 flex flex-col p-6 md:p-12 max-w-5xl mx-auto w-full">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <h2 id="lettersViewTitle" class="font-serif text-4xl font-bold text-sepiaBrown mb-2">Szerelmes levelek tiszta szívből neked, Édesem! 💌</h2>
+                    <p id="lettersViewSubtitle" class="font-serif text-base text-sepiaBrown/70 italic">Szívből, csókjaimmal pecsételve, forró öleléssel mellékelve<3</p>
+                    <div class="w-20 h-0.5 bg-blush-300 mx-auto mt-3"></div>
+                </div>
+
+                <div class="flex justify-end mb-6">
+                    <button id="openNewLetterModalBtn" class="bg-blush-600 hover:bg-blush-500 text-white font-serif text-sm px-5 py-2.5 rounded-2xl shadow-sm transition flex items-center gap-2">
+                        <i class="fa-solid fa-feather-pointed"></i> Új Levél Írása
+                    </button>
+                </div>
+
+                <div id="loveLettersGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-16"></div>
+            </div>
+
+            <div id="photoAlbumView" class="hidden flex-1 flex flex-col max-w-5xl mx-auto w-full p-4 md:p-8">
+                <div class="flex items-center justify-between mb-6 bg-warmwhite/80 p-4 rounded-2xl border border-blush-200 shadow-2xs">
+                    <button id="backToMenuBtn" class="flex items-center gap-2 text-sepiaBrown hover:text-blush-600 font-medium text-sm transition">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Vissza az Albumokhoz</span>
+                    </button>
+                    <div class="text-center">
+                        <h3 id="activeAlbumTitle" class="font-serif text-2xl font-bold text-sepiaBrown">Album Címe</h3>
+                        <p id="activeAlbumDesc" class="text-xs text-sepiaBrown/70 italic max-w-md truncate">Album leírása...</p>
+                    </div>
+                    <div id="photoProgressIndicator" class="font-serif text-sm font-semibold text-blush-600 bg-blush-50 px-3 py-1 rounded-full border border-blush-200">
+                        1 / 10
+                    </div>
+                </div>
+
+                <div class="flex-1 flex flex-col items-center justify-center relative min-h-[520px] book-viewport">
+                    <button id="prevPhotoBtn" class="absolute left-2 md:-left-8 z-50 bg-warmwhite/90 hover:bg-warmwhite text-sepiaBrown w-12 h-12 rounded-full shadow-md flex items-center justify-center border border-blush-200 transition">
+                        <i class="fa-solid fa-chevron-left text-lg"></i>
+                    </button>
+
+                    <button id="nextPhotoBtn" class="absolute right-2 md:-right-8 z-50 bg-warmwhite/90 hover:bg-warmwhite text-sepiaBrown w-12 h-12 rounded-full shadow-md flex items-center justify-center border border-blush-200 transition">
+                        <i class="fa-solid fa-chevron-right text-lg"></i>
+                    </button>
+
+                    <div id="scrapbookPageContainer" class="w-full flex justify-center items-center py-4 relative">
+                        <div id="activeBookPage" class="photo-album-book max-w-2xl w-full border border-blush-200/80">
+                            <div class="tape"></div>
+                            <div class="w-full h-[430px] sm:h-[520px] bg-blush-50 overflow-hidden relative rounded-xl flex items-center justify-center p-2">
+                                <img id="activePhotoImg" src="" alt="Memory Photo" class="max-w-full max-h-full object-contain rounded-lg shadow-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="albumThumbnailsStrip" class="mt-6 flex items-center gap-3 overflow-x-auto pb-4 px-2 max-w-3xl mx-auto w-full"></div>
+            </div>
+
+        </main>
+
+        <div id="newLetterModal" class="fixed inset-0 z-50 bg-sepiaBrown/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+            <div class="bg-warmwhite max-w-lg w-full rounded-3xl p-8 shadow-2xl border border-blush-200 relative">
+                <button id="closeNewLetterModalBtn" class="absolute top-4 right-4 text-sepiaBrown/50 hover:text-sepiaBrown"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <div class="w-14 h-14 bg-blush-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blush-600 text-xl">
+                    <i class="fa-solid fa-feather-pointed"></i>
+                </div>
+                <h3 class="font-serif text-2xl font-bold text-sepiaBrown mb-1 text-center">Új Szerelmes Levél</h3>
+                <p class="text-xs text-sepiaBrown/70 mb-6 text-center">Írd le a legbensőbb gondolataidat...</p>
+                
+                <form id="newLetterForm" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-medium text-sepiaBrown mb-1">Cím / Tárgy</label>
+                        <input type="text" id="letterTitleInput" placeholder="Pl. Neked, a mindenségemnek..." class="w-full px-4 py-2.5 rounded-xl border border-blush-300 focus:outline-none focus:ring-2 focus:ring-blush-400 bg-blush-50/50 text-sm text-sepiaBrown" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-sepiaBrown mb-1">Üzenet / Levél Szövege</label>
+                        <textarea id="letterContentInput" rows="5" placeholder="Kedvesem, amióta megismertelek..." class="w-full px-4 py-2.5 rounded-xl border border-blush-300 focus:outline-none focus:ring-2 focus:ring-blush-400 bg-blush-50/50 text-sm font-hand text-xl text-sepiaBrown leading-relaxed" required></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-medium text-sepiaBrown mb-1">Küldő</label>
+                            <input type="text" id="letterAuthorInput" placeholder="Te" value="Bebi" class="w-full px-3 py-2 rounded-xl border border-blush-300 bg-blush-50/50 text-xs text-sepiaBrown">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-sepiaBrown mb-1">Dátum</label>
+                            <input type="text" id="letterDateInput" placeholder="2025.06.14" class="w-full px-3 py-2 rounded-xl border border-blush-300 bg-blush-50/50 text-xs text-sepiaBrown">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-blush-600 hover:bg-blush-500 text-white py-3 rounded-xl font-medium transition shadow-sm font-serif text-base">
+                        Levél Elküldése & Mentése ❤️
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div id="adminModal" class="fixed inset-0 z-50 bg-sepiaBrown/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+            
+            <div id="adminAuthScreen" class="bg-warmwhite max-w-md w-full rounded-3xl p-8 shadow-2xl border border-blush-200 text-center relative">
+                <button id="closeAdminAuthBtn" class="absolute top-4 right-4 text-sepiaBrown/50 hover:text-sepiaBrown"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <div class="w-16 h-16 bg-blush-100 rounded-full flex items-center justify-center mx-auto mb-4 text-blush-600 text-2xl">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="font-serif text-2xl font-bold text-sepiaBrown mb-2">Adminisztrációs Bejelentkezés</h3>
+                <p class="text-xs text-sepiaBrown/70 mb-6">Kérlek, add meg a titkos jelszót a beállítások eléréséhez.</p>
+                
+                <form id="adminLoginForm" class="space-y-4">
+                    <input type="password" id="adminPasswordInput" placeholder="Titkos jelszó..." class="w-full px-4 py-3 rounded-xl border border-blush-300 focus:outline-none focus:ring-2 focus:ring-blush-400 bg-blush-50/50 text-center font-medium text-sepiaBrown" required>
+                    <button type="submit" class="w-full bg-sepiaBrown hover:bg-sepiaBrown/90 text-cream py-3 rounded-xl font-medium transition shadow-sm">
+                        Belépés a Vezérlőpultba
+                    </button>
+                    <p id="adminLoginError" class="text-xs text-red-500 hidden mt-2">Helytelen jelszó! (Hint: boss bebi)</p>
+                </form>
+            </div>
+
+            <div id="adminDashboardScreen" class="bg-warmwhite max-w-5xl w-full h-[90vh] rounded-3xl shadow-2xl border border-blush-200 flex flex-col hidden overflow-hidden">
+                <div class="px-6 py-4 bg-blush-50 border-b border-blush-200 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-blush-200 rounded-full flex items-center justify-center text-blush-700">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-serif text-xl font-bold text-sepiaBrown">Memória Könyv Irányítópult</h3>
+                            <p class="text-xs text-sepiaBrown/70">Minden változtatás valós időben mentődik a felhőbe.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button id="saveAllChangesBtn" class="bg-sage-600 hover:bg-sage-500 text-white px-4 py-2 rounded-xl text-xs font-semibold shadow-xs flex items-center gap-2 transition">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>Változtatás Mentése</span>
+                        </button>
+                        <button id="closeAdminDashboardBtn" class="text-sepiaBrown/60 hover:text-sepiaBrown w-8 h-8 rounded-full flex items-center justify-center hover:bg-blush-100 transition">
+                            <i class="fa-solid fa-xmark text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex border-b border-blush-200 bg-cream px-6 gap-2 overflow-x-auto">
+                    <button class="admin-tab-btn px-4 py-3 text-sm font-semibold text-blush-700 border-b-2 border-blush-600 transition" data-tab="albumsTab">Albumok & Borítók</button>
+                    <button class="admin-tab-btn px-4 py-3 text-sm font-semibold text-sepiaBrown/70 hover:text-sepiaBrown transition" data-tab="photosTab">Fotók Kezelése</button>
+                    <button class="admin-tab-btn px-4 py-3 text-sm font-semibold text-sepiaBrown/70 hover:text-sepiaBrown transition" data-tab="lettersTab">Szerelmes Levelek</button>
+                    <button class="admin-tab-btn px-4 py-3 text-sm font-semibold text-sepiaBrown/70 hover:text-sepiaBrown transition" data-tab="musicTab">Zene & Fájlok</button>
+                    <button class="admin-tab-btn px-4 py-3 text-sm font-semibold text-sepiaBrown/70 hover:text-sepiaBrown transition" data-tab="countdownTab">Visszaszámláló</button>
+                    <button class="admin-tab-btn px-4 py-3 text-sm font-semibold text-sepiaBrown/70 hover:text-sepiaBrown transition" data-tab="qrTab">QR Kód & Publikálás 📱</button>
+                    <button class="admin-tab-btn px-4 py-3 text-sm font-semibold text-sepiaBrown/70 hover:text-sepiaBrown transition" data-tab="settingsTab">Szövegek</button>
+                </div>
+
+                <div class="flex-1 overflow-y-auto p-6 space-y-6">
+                    <div id="albumsTab" class="admin-tab-content space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-serif text-lg font-bold text-sepiaBrown">Album Kategóriák és Borítóképek Kezelése</h4>
+                            <button id="addNewAlbumBtn" class="bg-blush-600 hover:bg-blush-500 text-white px-3 py-1.5 rounded-xl text-xs font-medium flex items-center gap-1.5 transition">
+                                <i class="fa-solid fa-plus"></i> Új Album Létrehozása
+                            </button>
+                        </div>
+                        <div id="adminAlbumsList" class="space-y-4"></div>
+                    </div>
+
+                    <div id="photosTab" class="admin-tab-content space-y-6 hidden">
+                        <div class="bg-gradient-to-r from-blush-100 via-blush-50 to-warmwhite border border-blush-300 p-5 rounded-2xl space-y-3 shadow-xs">
+                            <div class="flex items-center justify-between">
+                                <h5 class="text-xs font-bold uppercase tracking-wider text-blush-700 flex items-center gap-2">
+                                    <i class="fa-solid fa-cloud-arrow-up text-lg"></i>
+                                    <span>Kristálytiszta (HD) Felhő Feltöltő Beállítás (ImgBB)</span>
+                                </h5>
+                                <span class="text-[10px] bg-blush-200 text-blush-700 px-2 py-0.5 rounded-full font-semibold">Aktív & Beállítva</span>
+                            </div>
+                            <p class="text-xs text-sepiaBrown/80 leading-relaxed">
+                                Az ImgBB kulcsod be lett ágyazva, így a feltöltött képeid automatikusan ezen keresztül kerülnek tárolásra!
+                            </p>
+                            <div class="flex gap-2">
+                                <input type="text" id="adminImgbbApiKeyInput" placeholder="ImgBB API Kulcs" class="flex-1 bg-white border border-blush-300 rounded-xl px-4 py-2 text-xs text-sepiaBrown font-mono">
+                                <button id="saveImgbbKeyBtn" class="bg-blush-600 hover:bg-blush-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition">Kulcs Mentése</button>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-blush-50/60 p-4 rounded-2xl border border-blush-200">
+                            <div class="flex items-center gap-3">
+                                <h4 class="font-serif text-lg font-bold text-sepiaBrown">Fotók Feltöltése</h4>
+                                <select id="adminPhotoAlbumSelect" class="bg-white border border-blush-300 rounded-xl px-3 py-1.5 text-xs font-medium text-sepiaBrown"></select>
+                            </div>
+                            <label class="bg-blush-600 hover:bg-blush-500 text-white px-4 py-2 rounded-xl text-xs font-medium flex items-center gap-2 cursor-pointer transition shadow-xs">
+                                <i class="fa-solid fa-folder-open"></i> Kép(ek) Kiválasztása...
+                                <input type="file" id="adminPhotoFileInput" accept="image/*" multiple class="hidden">
+                            </label>
+                        </div>
+                        <div id="adminPhotosList" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+                    </div>
+
+                    <div id="lettersTab" class="admin-tab-content space-y-6 hidden">
+                        <h4 class="font-serif text-lg font-bold text-sepiaBrown">Szerelmes Levelek Kezelése</h4>
+                        <div id="adminLettersList" class="space-y-4"></div>
+                    </div>
+
+                    <div id="musicTab" class="admin-tab-content space-y-6 hidden">
+                        <h4 class="font-serif text-lg font-bold text-sepiaBrown">Háttérzene & Fájlfeltöltés</h4>
+                        <div class="bg-blush-50/50 border border-blush-200 p-5 rounded-2xl space-y-3 max-w-xl shadow-2xs">
+                            <h5 class="text-xs font-bold uppercase tracking-wider text-blush-700"><i class="fa-solid fa-file-audio mr-1"></i> Zene Kiválasztása (MP3)</h5>
+                            <div class="space-y-3">
+                                <label class="w-full border-2 border-dashed border-blush-300 hover:border-blush-500 bg-white rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer transition group">
+                                    <i class="fa-solid fa-cloud-arrow-up text-2xl text-blush-400 group-hover:text-blush-600 mb-2"></i>
+                                    <span class="text-xs font-semibold text-sepiaBrown">Kattints ide a zene hozzáadásához a mappából</span>
+                                    <span class="text-[10px] text-sepiaBrown/60 mt-1">Támogatott formátum: MP3, Audio</span>
+                                    <input type="file" id="adminMusicFileInput" accept="audio/*" class="hidden">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <h5 class="text-xs font-bold uppercase tracking-wider text-sepiaBrown/80">Jelenlegi Lejátszási Lista</h5>
+                            <div id="adminMusicList" class="space-y-3"></div>
+                        </div>
+                    </div>
+
+                    <div id="countdownTab" class="admin-tab-content space-y-6 hidden">
+                        <h4 class="font-serif text-lg font-bold text-sepiaBrown">Visszaszámláló Beállítások</h4>
+                        <div class="bg-blush-50/50 border border-blush-200 p-6 rounded-2xl space-y-4 max-w-xl">
+                            <div>
+                                <label class="block text-xs font-medium text-sepiaBrown mb-1">Visszaszámláló Címke / Szöveg</label>
+                                <input type="text" id="adminCdLabelInput" class="w-full bg-white border border-blush-300 rounded-xl px-4 py-2.5 text-sm text-sepiaBrown">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-sepiaBrown mb-1">Cél Dátum és Időpont</label>
+                                <input type="datetime-local" id="adminCdDateInput" class="w-full bg-white border border-blush-300 rounded-xl px-4 py-2.5 text-sm text-sepiaBrown">
+                            </div>
+                            <button id="saveCountdownSettingsBtn" class="bg-sepiaBrown text-cream px-4 py-2 rounded-xl text-xs font-semibold">Visszaszámláló Frissítése</button>
+                        </div>
+                    </div>
+
+                    <div id="qrTab" class="admin-tab-content space-y-6 hidden">
+                        <h4 class="font-serif text-lg font-bold text-sepiaBrown">Weboldal Publikálása & QR Kód Generátor</h4>
+                        <div class="bg-blush-50/50 border border-blush-200 p-6 rounded-2xl space-y-4 max-w-2xl shadow-xs">
+                            <p class="text-xs text-sepiaBrown/80 leading-relaxed">
+                                Igen, ez pontosan így működik! Mivel az oldal a felhőbe menti az adatokat, amikor te itt feltöltesz új zenéket vagy képeket, az oldal azonnal frissül mindenkinél! ✨
+                            </p>
+                            <div>
+                                <label class="block text-xs font-medium text-sepiaBrown mb-1">Weboldalod Publikus Linkje (URL)</label>
+                                <div class="flex gap-2">
+                                    <input type="text" id="adminSiteUrlInput" class="flex-1 bg-white border border-blush-300 rounded-xl px-4 py-2 text-xs text-sepiaBrown" placeholder="https://eternetyloveforbubi.netlify.app">
+                                    <button id="generateQrBtn" class="bg-blush-600 hover:bg-blush-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition">QR Kód Frissítése</button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-blush-200 shadow-2xs">
+                                <div id="qrCodeContainer" class="mb-3 p-3 bg-white rounded-xl border border-blush-100 shadow-2xs">
+                                    <img id="qrCodeImg" src="" alt="QR Code" class="w-48 h-48 object-contain">
+                                </div>
+                                <p class="text-[11px] text-sepiaBrown/60 text-center mb-4">Mentsd el ezt a QR-kódot, nyomtasd ki, vagy mutasd meg neki!</p>
+                                <a id="downloadQrBtn" href="#" download="szerelmes-qr-kod.png" class="bg-sepiaBrown text-cream px-5 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 hover:bg-sepiaBrown/90 transition shadow-xs">
+                                    <i class="fa-solid fa-download"></i> QR Kód Letöltése Képként
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="settingsTab" class="admin-tab-content space-y-6 hidden">
+                        <h4 class="font-serif text-lg font-bold text-sepiaBrown">Weboldal Szövegek & Testreszabás</h4>
+                        <div class="bg-blush-50/50 border border-blush-200 p-6 rounded-2xl space-y-4 max-w-xl">
+                            <h5 class="text-xs font-bold uppercase tracking-wider text-blush-700">1. Kezdő / Nyitó képernyő</h5>
+                            <div>
+                                <label class="block text-xs font-medium text-sepiaBrown mb-1">Nyitó Főcím</label>
+                                <input type="text" id="adminOpeningTitleInput" class="w-full bg-white border border-blush-300 rounded-xl px-4 py-2 text-sm text-sepiaBrown">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-sepiaBrown mb-1">Nyitó Alcím / Idézet</label>
+                                <input type="text" id="adminOpeningSubtitleInput" class="w-full bg-white border border-blush-300 rounded-xl px-4 py-2 text-sm text-sepiaBrown">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-sepiaBrown mb-1">Belépő Gomb Szövege</label>
+                                <input type="text" id="adminOpeningBtnInput" class="w-full bg-white border border-blush-300 rounded-xl px-4 py-2 text-sm text-sepiaBrown">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-sepiaBrown mb-1">Nyitó Képernyő Alsó Apró Szövege</label>
+                                <input type="text" id="adminOpeningFooterInput" class="w-full bg-white border border-blush-300 rounded-xl px-4 py-2 text-sm text-sepiaBrown">
+                            </div>
+
+                            <h5 class="text-xs font-bold uppercase tracking-wider text-blush-700 pt-2">2. Főoldali Album Nézet</h5>
+                            <div>
+                                <label class="block text-xs font-medium text-sepiaBrown mb-1">Főoldali Üdvözlő Cím</label>
+                                <input type="text" id="adminMainTitleInput" class="w-full bg-white border border-blush-300 rounded-xl px-4 py-2 text-sm text-sepiaBrown">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-sepiaBrown mb-1">Főoldali Alcím / Köszöntő</label>
+                                <textarea id="adminMainSubtitleInput" rows="2" class="w-full bg-white border border-blush-300 rounded-xl px-4 py-2 text-sm text-sepiaBrown"></textarea>
+                            </div>
+
+                            <h5 class="text-xs font-bold uppercase tracking-wider text-blush-700 pt-2">3. Szerelmes Levelek Nézet</h5>
+                            <div>
+                                <label class="block text-xs font-medium text-sepiaBrown mb-1">Levelek Címsor</label>
+                                <input type="text" id="adminLettersTitleInput" class="w-full bg-white border border-blush-300 rounded-xl px-4 py-2 text-sm text-sepiaBrown">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-sepiaBrown mb-1">Levelek Alcím</label>
+                                <input type="text" id="adminLettersSubtitleInput" class="w-full bg-white border border-blush-300 rounded-xl px-4 py-2 text-sm text-sepiaBrown">
+                            </div>
+
+                            <button id="saveWebsiteTextBtn" class="bg-sepiaBrown hover:bg-sepiaBrown/90 text-cream px-4 py-2.5 rounded-xl text-xs font-semibold w-full mt-2 transition">Minden Szöveg Mentése</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-sepiaBrown text-cream px-6 py-3 rounded-2xl shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-sage-500 text-lg"></i>
+            <span id="toastMessage" class="text-sm font-medium">Sikeres mentés!</span>
+        </div>
+
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const defaultAppState = {
+            settings: {
+                countdownDate: "2026-12-31T20:00:00",
+                countdownLabel: "Találkozásunkig:",
+                mainTitle: "Akik mindig hazavárnak<3",
+                mainSubtitle: "Veled minden egyes pillanat egy álommal ér fel, kedvesem! ❤️ Te vagy a legcsodálatosabb ember az egész földkerekségen, köszönjük... ❤️",
+                brandTitle: "Szerelmes Emlékeink",
+                openingTitle: "Emlékeink tárháza 💌",
+                openingSubtitle: '"Ahol a legszebb pillanataink örökké élnek és ragyognak..."',
+                openingBtnText: "Ha egyedül, magányosan éreznéd magad, ne feledd mi szeratunk<3     ➔",
+                openingFooter: "Készült tiszta szívvel, csak neked ❤️",
+                lettersTitle: "Szerelmes levelek tiszta szívből neked, Édesem! 💌",
+                lettersSubtitle: "Szívből, csókjaimmal pecsételve, forró öleléssel mellékelve<3",
+                imgbbApiKey: "bb8f8bd5b3ff239a4b765f907cd805b8"
+            },
+            music: [
+                { id: "m1", title: "Bruno Mars", url: "Bruno Mars - Just The Way You Are (Official Music Video).mp3" },
+                { id: "m2", title: "ByeAlex - Fekete", url: "ByeAlex - Fekete.mp3" },
+                { id: "m3", title: "ByeAlex Remix", url: "ByeAlex és a Slepp - Még mindig... (Lotfi Begi Remix) OFFICIAL LYRIC VIDEO.mp3" },
+                { id: "m4", title: "Kedvenc zene", url: "music.mp3.mp3" }
+            ],
+            letters: [
+                { id: "l1", title: "Az első levél neked", content: "Kedvesem, sosem feledem el azt a percet, amikor először megláttalak. Azóta az életem minden napja teli van fénnyel és dallammal.", author: "Te", date: "2024.03.15" }
+            ],
+            albums: [
+                {
+                    id: "alb-1",
+                    title: "Our First Memories",
+                    description: "Az első találkozások...",
+                    cover: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80",
+                    dateRange: "2024",
+                    photos: [
+                        { id: "p1", image: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80" }
+                    ]
+                }
+            ]
+        };
+
+        let appState = JSON.parse(JSON.stringify(defaultAppState));
+        let currentAlbumId = null;
+        let currentPhotoIndex = 0;
+        let currentAudioIndex = 0;
+        let audioElement = new Audio();
+        let isPlayingMusic = false;
+
+        const appId = 'romantic-memory-book-v2';
+        const firebaseConfig = {
+            apiKey: "AIzaSyC0J687tsxkCxqRhIEbCncShvzzr9etGdc",
+            authDomain: "lovebubi-62266.firebaseapp.com",
+            projectId: "lovebubi-62266",
+            storageBucket: "lovebubi-62266.firebasestorage.app",
+            messagingSenderId: "425066942346",
+            appId: "1:425066942346:web:1f9c8f7375e5afff264273"
+        };
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+
+        function compressImage(file, maxWidth = 1000, maxHeight = 1000, quality = 0.75) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = () => {
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > height) {
+                            if (width > maxWidth) {
+                                height = Math.round((height * maxWidth) / width);
+                                width = maxWidth;
+                            }
+                        } else {
+                            if (height > maxHeight) {
+                                width = Math.round((width * maxHeight) / height);
+                                height = maxHeight;
+                            }
+                        }
+
+                        const canvas = document.createElement('canvas');
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d', { alpha: false });
+                        
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.fillRect(0, 0, width, height);
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                        resolve(compressedDataUrl);
+                    };
+                    img.onerror = (err) => reject(err);
+                };
+                reader.onerror = (err) => reject(err);
+            });
+        }
+
+        async function uploadToImgBB(file, apiKey) {
+            const formData = new FormData();
+            formData.append("image", file);
+            const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+                method: "POST",
+                body: formData
+            });
+            const data = await response.json();
+            if (data && data.success) {
+                return data.data.url;
+            } else {
+                throw new Error(data.error ? data.error.message : "Feltöltési hiba");
+            }
+        }
+
+        function initFloatingParticles() {
+            const container = document.getElementById('particlesContainer');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart fa-solid fa-heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 16 + 12) + 'px';
+                heart.style.animationDuration = (Math.random() * 5 + 6) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        async function initFirebase() {
+            if (!firebaseConfig) {
+                loadFromLocalStorage();
+                initializeAppUI();
+                setupMusicSystem();
+                return;
+            }
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                currentUser = auth.currentUser;
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'memoryBookDataV2');
+                
+                onSnapshot(docRef, (docSnap) => {
+                    if (docSnap.exists()) {
+                        const cloudData = docSnap.data();
+                        if (cloudData && cloudData.state) {
+                            appState = cloudData.state;
+                            if (!appState.settings.imgbbApiKey) {
+                                appState.settings.imgbbApiKey = "bb8f8bd5b3ff239a4b765f907cd805b8";
+                            }
+                            initializeAppUI();
+                            setupMusicSystem();
+                        }
+                    } else {
+                        setDoc(docRef, { state: defaultAppState });
+                        initializeAppUI();
+                        setupMusicSystem();
+                    }
+                }, (error) => {
+                    console.error("Firestore snapshot error:", error);
+                    loadFromLocalStorage();
+                    initializeAppUI();
+                    setupMusicSystem();
+                });
+            } catch (err) {
+                console.error("Firebase init error:", err);
+                loadFromLocalStorage();
+                initializeAppUI();
+                setupMusicSystem();
+            }
+        }
+
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem('romantic_memory_book_v2_state');
+            if (saved) {
+                try {
+                    appState = JSON.parse(saved);
+                } catch(e) { console.error(e); }
+            }
+        }
+
+        async function saveAppState() {
+            if (db && currentUser) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'memoryBookDataV2');
+                    await setDoc(docRef, { state: appState });
+                    showToast("Sikeres mentés a felhőbe! ☁️❤️");
+                    return;
+                } catch(e) {
+                    console.error("Cloud save failed", e);
+                }
+            }
+            try {
+                localStorage.setItem('romantic_memory_book_v2_state', JSON.stringify(appState));
+                showToast("Sikeres mentés helyben! 💾❤️");
+            } catch(e) {
+                showToast("⚠️ A böngésző tárhelye megtelt!");
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastNotification');
+            document.getElementById('toastMessage').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3500);
+        }
+
+        function initializeAppUI() {
+            renderHeaderAndTexts();
+            renderAlbumsGrid();
+            renderLoveLettersGrid();
+            initCountdown();
+        }
+
+        function renderHeaderAndTexts() {
+            const s = appState.settings || {};
+            document.getElementById('headerBrandTitle').innerText = s.brandTitle || "Szerelmes Emlékeink";
+            document.getElementById('mainWelcomeTitle').innerText = s.mainTitle || "Akik mindig hazavárnak<3";
+            document.getElementById('mainWelcomeSubtitle').innerText = s.mainSubtitle || "";
+            document.getElementById('countdownLabelText').innerText = s.countdownLabel || "Találkozásunkig:";
+
+            const opTitle = document.getElementById('openingTitleText');
+            const opSub = document.getElementById('openingSubtitleText');
+            const opBtn = document.getElementById('openingBtnLabel');
+            const opFoot = document.getElementById('openingFooterText');
+
+            if (opTitle) opTitle.innerText = s.openingTitle || "Emlékeink tárháza 💌";
+            if (opSub) opSub.innerText = s.openingSubtitle || '"Ahol a legszebb pillanataink örökké élnek és ragyognak..."';
+            if (opBtn) opBtn.innerText = s.openingBtnText || "Ha egyedül, magányosan éreznéd magad, ne feledd mi szeratunk<3     ➔";
+            if (opFoot) opFoot.innerText = s.openingFooter || "Készült tiszta szívvel, csak neked ❤️";
+
+            const letTitle = document.getElementById('lettersViewTitle');
+            const letSub = document.getElementById('lettersViewSubtitle');
+
+            if (letTitle) letTitle.innerText = s.lettersTitle || "Szerelmes levelek tiszta szívből neked, Édesem! 💌";
+            if (letSub) letSub.innerText = s.lettersSubtitle || "Szívből, csókjaimmal pecsételve, forró öleléssel mellékelve<3";
+        }
+
+        function startOpeningAnimation() {
+            const anim = document.getElementById('openingAnimation');
+            const enterBtn = document.getElementById('enterBookBtn');
+            const skipBtn = document.getElementById('skipAnimationBtn');
+            const canvas = document.getElementById('animationCanvas');
+            const ctx = canvas.getContext('2d');
+
+            let animationFrameId;
+            let particles = [];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            for (let i = 0; i < 70; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2.5 + 0.5,
+                    color: Math.random() > 0.5 ? '#ff758c' : '#ffd166',
+                    alpha: Math.random(),
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5,
+                    pulseSpeed: Math.random() * 0.03 + 0.01
+                });
+            }
+
+            let interactiveParticles = [];
+            window.addEventListener('mousemove', (e) => {
+                if (Math.random() > 0.6) {
+                    interactiveParticles.push({
+                        x: e.clientX,
+                        y: e.clientY,
+                        radius: Math.random() * 6 + 4,
+                        color: '#ff99c8',
+                        alpha: 1,
+                        vx: (Math.random() - 0.5) * 2,
+                        vy: (Math.random() - 0.5) * 2 - 1
+                    });
+                }
+            });
+
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.alpha += Math.sin(Date.now() * p.pulseSpeed) * 0.01;
+                    if (p.alpha < 0.1) p.alpha = 0.1;
+                    if (p.alpha > 1) p.alpha = 1;
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) p.x = 0;
+                    if (p.y < 0) p.y = canvas.height;
+                    if (p.y > canvas.height) p.y = 0;
+
+                    ctx.save();
+                    ctx.globalAlpha = p.alpha;
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                });
+
+                interactiveParticles.forEach((ip, index) => {
+                    ip.x += ip.vx;
+                    ip.y += ip.vy;
+                    ip.alpha -= 0.02;
+                    ip.radius *= 0.96;
+                    if (ip.alpha <= 0) {
+                        interactiveParticles.splice(index, 1);
+                        return;
+                    }
+                    ctx.save();
+                    ctx.globalAlpha = ip.alpha;
+                    ctx.fillStyle = ip.color;
+                    ctx.beginPath();
+                    ctx.arc(ip.x, ip.y, ip.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                });
+
+                animationFrameId = requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+
+            function closeAnimation() {
+                cancelAnimationFrame(animationFrameId);
+                anim.classList.add('opacity-0', 'scale-105', 'pointer-events-none');
+                setTimeout(() => anim.remove(), 1000);
+                
+                const toggleBtn = document.getElementById('musicToggleBtn');
+                if (audioElement && appState.music && appState.music.length > 0 && !isPlayingMusic) {
+                    audioElement.play().then(() => {
+                        isPlayingMusic = true;
+                        toggleBtn.innerHTML = '<i class="fa-solid fa-pause text-blush-700 animate-pulse"></i>';
+                    }).catch(e => console.log("Autoplay prevented:", e));
+                }
+            }
+
+            if (enterBtn) enterBtn.onclick = closeAnimation;
+            if (skipBtn) skipBtn.onclick = closeAnimation;
+        }
+
+        const navAlbumsTab = document.getElementById('navAlbumsTab');
+        const navLettersTab = document.getElementById('navLettersTab');
+        const albumMenuView = document.getElementById('albumMenuView');
+        const loveLettersView = document.getElementById('loveLettersView');
+        const photoAlbumView = document.getElementById('photoAlbumView');
+
+        navAlbumsTab.onclick = () => {
+            navAlbumsTab.className = "px-4 py-1.5 rounded-full bg-blush-600 text-white shadow-xs transition";
+            navLettersTab.className = "px-4 py-1.5 rounded-full text-sepiaBrown/70 hover:text-sepiaBrown transition";
+            albumMenuView.classList.remove('hidden');
+            loveLettersView.classList.add('hidden');
+            photoAlbumView.classList.add('hidden');
+            document.getElementById('currentViewIndicator').innerText = "Főmenü";
+        };
+
+        navLettersTab.onclick = () => {
+            navLettersTab.className = "px-4 py-1.5 rounded-full bg-blush-600 text-white shadow-xs transition";
+            navAlbumsTab.className = "px-4 py-1.5 rounded-full text-sepiaBrown/70 hover:text-sepiaBrown transition";
+            loveLettersView.classList.remove('hidden');
+            albumMenuView.classList.add('hidden');
+            photoAlbumView.classList.add('hidden');
+            document.getElementById('currentViewIndicator').innerText = "Szerelmes Levelek";
+            renderLoveLettersGrid();
+        };
+
+        function renderAlbumsGrid() {
+            const grid = document.getElementById('albumsGridContainer');
+            grid.innerHTML = '';
+
+            appState.albums.forEach(album => {
+                const card = document.createElement('div');
+                card.className = "group cursor-pointer bg-warmwhite rounded-3xl p-5 border border-blush-200/80 shadow-md hover:shadow-xl transition duration-300 flex flex-col relative overflow-hidden";
+                card.onclick = () => openAlbum(album.id);
+
+                card.innerHTML = `
+                    <div class="relative w-full h-56 rounded-2xl overflow-hidden mb-4 bg-blush-50">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-20 h-5 bg-blush-200/80 z-10 tape"></div>
+                        <img src="${album.cover}" alt="${album.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x400/f9f0f0/bd7373?text=Album'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-sepiaBrown/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition"></div>
+                        <span class="absolute bottom-3 left-4 text-cream font-serif text-xs bg-sepiaBrown/40 backdrop-blur-xs px-2.5 py-1 rounded-full"><i class="fa-solid fa-image mr-1"></i> ${album.photos ? album.photos.length : 0} emlék</span>
+                    </div>
+                    <div class="flex-1 flex flex-col">
+                        <span class="text-xs font-serif italic text-blush-600 mb-1">${album.dateRange || 'Örök emlék'}</span>
+                        <h3 class="font-serif text-2xl font-bold text-sepiaBrown group-hover:text-blush-600 transition mb-2">${album.title}</h3>
+                        <p class="text-xs text-sepiaBrown/70 line-clamp-2">${album.description}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderLoveLettersGrid() {
+            const grid = document.getElementById('loveLettersGrid');
+            grid.innerHTML = '';
+
+            if (!appState.letters || appState.letters.length === 0) {
+                grid.innerHTML = `<p class="text-center col-span-2 text-sepiaBrown/60 font-serif italic py-8">Még nincsenek levelek. Írd meg az elsőt!</p>`;
+                return;
+            }
+
+            appState.letters.forEach((letter) => {
+                const card = document.createElement('div');
+                card.className = "paper-texture bg-warmwhite rounded-3xl p-6 md:p-8 border border-blush-200 shadow-md relative flex flex-col justify-between";
+                card.innerHTML = `
+                    <div class="absolute -top-3 right-6 text-blush-400 text-xl"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <div>
+                        <span class="text-xs font-serif italic text-blush-600 block mb-1">${letter.date || 'Örökké'}</span>
+                        <h3 class="font-serif text-2xl font-bold text-sepiaBrown mb-4">${letter.title}</h3>
+                        <p class="font-hand text-2xl text-sepiaBrown/90 leading-relaxed mb-6 whitespace-pre-line">"${letter.content}"</p>
+                    </div>
+                    <div class="flex items-center justify-between border-t border-blush-200 pt-4 text-xs font-serif italic text-sepiaBrown/70">
+                        <span>Írta: <strong>${letter.author}</strong></span>
+                        <span class="text-blush-600"><i class="fa-solid fa-heart mr-1"></i> Szeretettel</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        const newLetterModal = document.getElementById('newLetterModal');
+        document.getElementById('openNewLetterModalBtn').onclick = () => newLetterModal.classList.remove('hidden');
+        document.getElementById('closeNewLetterModalBtn').onclick = () => newLetterModal.classList.add('hidden');
+
+        document.getElementById('newLetterForm').onsubmit = (e) => {
+            e.preventDefault();
+            const title = document.getElementById('letterTitleInput').value.trim();
+            const content = document.getElementById('letterContentInput').value.trim();
+            const author = document.getElementById('letterAuthorInput').value.trim() || "Bebi";
+            const date = document.getElementById('letterDateInput').value.trim() || new Date().toISOString().split('T')[0];
+
+            if (!title || !content) return;
+
+            if (!appState.letters) appState.letters = [];
+            appState.letters.unshift({ id: 'l-' + Date.now(), title, content, author, date });
+
+            document.getElementById('letterTitleInput').value = '';
+            document.getElementById('letterContentInput').value = '';
+            newLetterModal.classList.add('hidden');
+
+            renderLoveLettersGrid();
+            saveAppState();
+            showToast("Szerelmes levél elmentve! 💌");
+        };
+
+        function openAlbum(albumId) {
+            currentAlbumId = albumId;
+            currentPhotoIndex = 0;
+            
+            const album = appState.albums.find(a => a.id === albumId);
+            if (!album) return;
+
+            document.getElementById('activeAlbumTitle').innerText = album.title;
+            document.getElementById('activeAlbumDesc').innerText = album.description;
+
+            albumMenuView.classList.add('hidden');
+            loveLettersView.classList.add('hidden');
+            photoAlbumView.classList.remove('hidden');
+            document.getElementById('currentViewIndicator').innerText = album.title;
+
+            renderActivePhoto('next', true);
+            renderThumbnailsStrip();
+        }
+
+        function renderActivePhoto(direction = 'next', isInitial = false) {
+            const album = appState.albums.find(a => a.id === currentAlbumId);
+            if (!album || !album.photos || album.photos.length === 0) return;
+
+            if (currentPhotoIndex >= album.photos.length) currentPhotoIndex = album.photos.length - 1;
+            if (currentPhotoIndex < 0) currentPhotoIndex = 0;
+
+            const photo = album.photos[currentPhotoIndex];
+            const activeImg = document.getElementById('activePhotoImg');
+            const container = document.getElementById('scrapbookPageContainer');
+
+            document.getElementById('photoProgressIndicator').innerText = `${currentPhotoIndex + 1} / ${album.photos.length}`;
+
+            document.querySelectorAll('.thumb-item').forEach((el, idx) => {
+                if (idx === currentPhotoIndex) {
+                    el.classList.add('ring-2', 'ring-blush-600', 'scale-105');
+                } else {
+                    el.classList.remove('ring-2', 'ring-blush-600', 'scale-105');
+                }
+            });
+
+            const oldPhotoSrc = activeImg.src;
+            const newPhotoSrc = photo.image;
+
+            if (isInitial || !oldPhotoSrc || oldPhotoSrc === newPhotoSrc || oldPhotoSrc.includes('placehold.co')) {
+                activeImg.src = newPhotoSrc;
+                return;
+            }
+
+            const existingLeaves = container.querySelectorAll('.flip-leaf');
+            existingLeaves.forEach(l => l.remove());
+
+            const leaf = document.createElement('div');
+            leaf.className = `flip-leaf ${direction === 'next' ? 'animate-flip-next' : 'animate-flip-prev'}`;
+
+            leaf.innerHTML = `
+                <div class="flip-leaf-front">
+                    <div class="tape"></div>
+                    <div class="w-full h-full bg-blush-50 overflow-hidden rounded-xl flex items-center justify-center p-2">
+                        <img src="${oldPhotoSrc}" class="max-w-full max-h-full object-contain rounded-lg shadow-sm">
+                    </div>
+                    <div class="leaf-shine"></div>
+                </div>
+                <div class="flip-leaf-back">
+                    <div class="tape"></div>
+                    <div class="w-full h-full bg-blush-50 overflow-hidden rounded-xl flex items-center justify-center p-2">
+                        <img src="${newPhotoSrc}" class="max-w-full max-h-full object-contain rounded-lg shadow-sm">
+                    </div>
+                    <div class="leaf-shine"></div>
+                </div>
+            `;
+
+            container.appendChild(leaf);
+            activeImg.src = newPhotoSrc;
+
+            setTimeout(() => {
+                if (leaf && leaf.parentNode) {
+                    leaf.remove();
+                }
+            }, 750);
+        }
+
+        function renderThumbnailsStrip() {
+            const album = appState.albums.find(a => a.id === currentAlbumId);
+            const strip = document.getElementById('albumThumbnailsStrip');
+            strip.innerHTML = '';
+
+            if (!album || !album.photos) return;
+
+            album.photos.forEach((photo, idx) => {
+                const thumb = document.createElement('div');
+                thumb.className = "thumb-item w-16 h-16 rounded-xl overflow-hidden cursor-pointer flex-shrink-0 border-2 border-blush-200 shadow-2xs transition transform hover:scale-105";
+                thumb.innerHTML = `<img src="${photo.image}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/f9f0f0/bd7373?text=Foto'">`;
+                thumb.onclick = () => {
+                    const dir = idx >= currentPhotoIndex ? 'next' : 'prev';
+                    currentPhotoIndex = idx;
+                    renderActivePhoto(dir);
+                };
+                strip.appendChild(thumb);
+            });
+        }
+
+        document.getElementById('backToMenuBtn').onclick = () => {
+            photoAlbumView.classList.add('hidden');
+            albumMenuView.classList.remove('hidden');
+            document.getElementById('currentViewIndicator').innerText = "Főmenü";
+        };
+
+        document.getElementById('prevPhotoBtn').onclick = () => {
+            const album = appState.albums.find(a => a.id === currentAlbumId);
+            if (album && album.photos) {
+                currentPhotoIndex = (currentPhotoIndex - 1 + album.photos.length) % album.photos.length;
+                renderActivePhoto('prev');
+            }
+        };
+
+        document.getElementById('nextPhotoBtn').onclick = () => {
+            const album = appState.albums.find(a => a.id === currentAlbumId);
+            if (album && album.photos) {
+                currentPhotoIndex = (currentPhotoIndex + 1) % album.photos.length;
+                renderActivePhoto('next');
+            }
+        };
+
+        window.addEventListener('keydown', (e) => {
+            if (!photoAlbumView.classList.contains('hidden')) {
+                if (e.key === 'ArrowLeft') document.getElementById('prevPhotoBtn').click();
+                if (e.key === 'ArrowRight') document.getElementById('nextPhotoBtn').click();
+            }
+        });
+
+        function setupMusicSystem() {
+            if (appState.music && appState.music.length > 0) {
+                if (currentAudioIndex >= appState.music.length) currentAudioIndex = 0;
+                audioElement.src = appState.music[currentAudioIndex].url;
+                audioElement.load();
+                document.getElementById('nowPlayingTitle').innerText = appState.music[currentAudioIndex].title;
+            } else {
+                document.getElementById('nowPlayingTitle').innerText = "Nincs zene";
+            }
+
+            const toggleBtn = document.getElementById('musicToggleBtn');
+            toggleBtn.onclick = () => {
+                if (!appState.music || appState.music.length === 0) return;
+                if (isPlayingMusic) {
+                    audioElement.pause();
+                    isPlayingMusic = false;
+                    toggleBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
+                } else {
+                    audioElement.play().then(() => {
+                        isPlayingMusic = true;
+                        toggleBtn.innerHTML = '<i class="fa-solid fa-pause text-blush-700 animate-pulse"></i>';
+                    }).catch(e => console.log(e));
+                }
+            };
+
+            const nextBtn = document.getElementById('musicNextBtn');
+            nextBtn.onclick = () => {
+                if (!appState.music || appState.music.length === 0) return;
+                currentAudioIndex = (currentAudioIndex + 1) % appState.music.length;
+                audioElement.src = appState.music[currentAudioIndex].url;
+                audioElement.load();
+                document.getElementById('nowPlayingTitle').innerText = appState.music[currentAudioIndex].title;
+                if (isPlayingMusic) audioElement.play().catch(e => {});
+            };
+
+            audioElement.onended = () => nextBtn.click();
+        }
+
+        function initCountdown() {
+            updateCountdownTimer();
+            setInterval(updateCountdownTimer, 1000);
+        }
+
+        function updateCountdownTimer() {
+            const targetDateStr = appState.settings.countdownDate || "2026-12-31T20:00:00";
+            const target = new Date(targetDateStr).getTime();
+            const now = new Date().getTime();
+            const diff = target - now;
+
+            if (diff <= 0) {
+                document.getElementById('cdDays').innerText = "00";
+                document.getElementById('cdHours').innerText = "00";
+                document.getElementById('cdMins').innerText = "00";
+                document.getElementById('cdSecs').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('cdDays').innerText = String(days).padStart(2, '0');
+            document.getElementById('cdHours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('cdMins').innerText = String(mins).padStart(2, '0');
+            document.getElementById('cdSecs').innerText = String(secs).padStart(2, '0');
+        }
+
+        const openAdminBtn = document.getElementById('openAdminBtn');
+        const adminModal = document.getElementById('adminModal');
+        const adminAuthScreen = document.getElementById('adminAuthScreen');
+        const adminDashboardScreen = document.getElementById('adminDashboardScreen');
+        const adminLoginForm = document.getElementById('adminLoginForm');
+        const closeAdminAuthBtn = document.getElementById('closeAdminAuthBtn');
+        const closeAdminDashboardBtn = document.getElementById('closeAdminDashboardBtn');
+
+        openAdminBtn.onclick = () => {
+            adminModal.classList.remove('hidden');
+            adminAuthScreen.classList.remove('hidden');
+            adminDashboardScreen.classList.add('hidden');
+        };
+
+        closeAdminAuthBtn.onclick = () => adminModal.classList.add('hidden');
+        closeAdminDashboardBtn.onclick = () => adminModal.classList.add('hidden');
+
+        adminLoginForm.onsubmit = (e) => {
+            e.preventDefault();
+            const pass = document.getElementById('adminPasswordInput').value;
+            if (pass === "boss bebi") {
+                document.getElementById('adminLoginError').classList.add('hidden');
+                adminAuthScreen.classList.add('hidden');
+                adminDashboardScreen.classList.remove('hidden');
+                populateAdminDashboard();
+            } else {
+                document.getElementById('adminLoginError').classList.remove('hidden');
+            }
+        };
+
+        document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+            btn.onclick = (e) => {
+                document.querySelectorAll('.admin-tab-btn').forEach(b => {
+                    b.classList.remove('text-blush-700', 'border-b-2', 'border-blush-600');
+                    b.classList.add('text-sepiaBrown/70');
+                });
+                e.target.classList.add('text-blush-700', 'border-b-2', 'border-blush-600');
+                e.target.classList.remove('text-sepiaBrown/70');
+
+                const tabName = e.target.getAttribute('data-tab');
+                document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.add('hidden'));
+                document.getElementById(tabName).classList.remove('hidden');
+            };
+        });
+
+        function populateAdminDashboard() {
+            const albumsList = document.getElementById('adminAlbumsList');
+            albumsList.innerHTML = '';
+            appState.albums.forEach((album, idx) => {
+                const item = document.createElement('div');
+                item.className = "bg-white p-4 rounded-2xl border border-blush-200 flex flex-col md:flex-row items-center gap-4 shadow-xs";
+                item.innerHTML = `
+                    <div class="relative w-16 h-16 rounded-xl overflow-hidden bg-blush-50 flex-shrink-0 group">
+                        <img src="${album.cover}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/f9f0f0/bd7373?text=Cover'">
+                        <label class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition cursor-pointer text-white text-xs">
+                            <i class="fa-solid fa-camera"></i>
+                            <input type="file" accept="image/*" class="hidden album-cover-file-input" data-index="${idx}">
+                        </label>
+                    </div>
+                    <div class="flex-1 space-y-1 w-full">
+                        <input type="text" value="${album.title}" class="font-serif font-bold text-sepiaBrown bg-blush-50/50 px-3 py-1 rounded-lg w-full border border-blush-200 album-title-input" data-index="${idx}">
+                        <input type="text" value="${album.description}" class="text-xs text-sepiaBrown/70 bg-blush-50/50 px-3 py-1 rounded-lg w-full border border-blush-200 album-desc-input" data-index="${idx}">
+                        <input type="text" value="${album.cover}" class="text-xs text-sepiaBrown/50 bg-blush-50/50 px-3 py-1 rounded-lg w-full border border-blush-200 album-cover-input" data-index="${idx}">
+                    </div>
+                    <button class="text-red-500 hover:text-red-700 text-sm p-2 delete-album-btn" data-index="${idx}"><i class="fa-solid fa-trash"></i></button>
+                `;
+                albumsList.appendChild(item);
+            });
+
+            document.querySelectorAll('.album-cover-file-input').forEach(input => {
+                input.onchange = async (e) => {
+                    const idx = parseInt(e.currentTarget.getAttribute('data-index'));
+                    const file = e.target.files[0];
+                    if (file) {
+                        try {
+                            const apiKey = (appState.settings && appState.settings.imgbbApiKey) ? appState.settings.imgbbApiKey.trim() : "bb8f8bd5b3ff239a4b765f907cd805b8";
+                            let coverUrl = await uploadToImgBB(file, apiKey);
+                            appState.albums[idx].cover = coverUrl;
+                            populateAdminDashboard();
+                            showToast("Album borítókép frissítve! 🖼️");
+                        } catch(err) { 
+                            console.error(err);
+                            showToast("⚠️ Hiba a borító feltöltésekor.");
+                        }
+                    }
+                };
+            });
+
+            document.querySelectorAll('.delete-album-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    const idx = parseInt(e.currentTarget.getAttribute('data-index'));
+                    appState.albums.splice(idx, 1);
+                    populateAdminDashboard();
+                };
+            });
+
+            const photoSelect = document.getElementById('adminPhotoAlbumSelect');
+            photoSelect.innerHTML = '';
+            appState.albums.forEach(album => {
+                const opt = document.createElement('option');
+                opt.value = album.id;
+                opt.innerText = album.title;
+                photoSelect.appendChild(opt);
+            });
+            photoSelect.onchange = renderAdminPhotos;
+            renderAdminPhotos();
+
+            const lettersList = document.getElementById('adminLettersList');
+            lettersList.innerHTML = '';
+            if (appState.letters) {
+                appState.letters.forEach((letter, idx) => {
+                    const item = document.createElement('div');
+                    item.className = "bg-white p-4 rounded-2xl border border-blush-200 flex flex-col gap-2 shadow-xs";
+                    item.innerHTML = `
+                        <div class="flex justify-between items-center">
+                            <input type="text" value="${letter.title}" class="font-serif font-bold text-sepiaBrown bg-blush-50 px-3 py-1 rounded-lg border border-blush-200 letter-title-input w-2/3" data-index="${idx}">
+                            <button class="text-red-500 hover:text-red-700 text-xs px-2 py-1 delete-letter-btn" data-index="${idx}"><i class="fa-solid fa-trash mr-1"></i> Törlés</button>
+                        </div>
+                        <textarea rows="3" class="text-xs bg-blush-50 px-3 py-2 rounded-lg border border-blush-200 letter-content-input font-hand text-lg" data-index="${idx}">${letter.content}</textarea>
+                    `;
+                    lettersList.appendChild(item);
+                });
+            }
+
+            document.querySelectorAll('.delete-letter-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    const idx = parseInt(e.currentTarget.getAttribute('data-index'));
+                    appState.letters.splice(idx, 1);
+                    populateAdminDashboard();
+                };
+            });
+
+            renderAdminMusicList();
+
+            const s = appState.settings || {};
+            document.getElementById('adminImgbbApiKeyInput').value = s.imgbbApiKey || "bb8f8bd5b3ff239a4b765f907cd805b8";
+
+            document.getElementById('adminOpeningTitleInput').value = s.openingTitle || "";
+            document.getElementById('adminOpeningSubtitleInput').value = s.openingSubtitle || "";
+            document.getElementById('adminOpeningBtnInput').value = s.openingBtnText || "";
+            document.getElementById('adminOpeningFooterInput').value = s.openingFooter || "";
+
+            document.getElementById('adminMainTitleInput').value = s.mainTitle || "";
+            document.getElementById('adminMainSubtitleInput').value = s.mainSubtitle || "";
+
+            document.getElementById('adminLettersTitleInput').value = s.lettersTitle || "";
+            document.getElementById('adminLettersSubtitleInput').value = s.lettersSubtitle || "";
+
+            document.getElementById('adminCdLabelInput').value = s.countdownLabel || "";
+            document.getElementById('adminCdDateInput').value = s.countdownDate || "";
+
+            const defaultUrl = window.location.href.includes('http') ? window.location.href : 'https://eternetyloveforbubi.netlify.app';
+            const siteUrlInput = document.getElementById('adminSiteUrlInput');
+            if (!siteUrlInput.value) siteUrlInput.value = defaultUrl;
+            updateQrCode(siteUrlInput.value);
+
+            document.getElementById('generateQrBtn').onclick = () => {
+                const url = siteUrlInput.value.trim() || defaultUrl;
+                updateQrCode(url);
+                showToast("QR kód frissítve!");
+            };
+        }
+
+        document.getElementById('saveImgbbKeyBtn').onclick = () => {
+            const key = document.getElementById('adminImgbbApiKeyInput').value.trim();
+            if (!appState.settings) appState.settings = {};
+            appState.settings.imgbbApiKey = key;
+            saveAppState();
+            showToast("ImgBB API kulcs elmentve! ☁️");
+        };
+
+        function updateQrCode(url) {
+            const qrImg = document.getElementById('qrCodeImg');
+            const downloadBtn = document.getElementById('downloadQrBtn');
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}`;
+            qrImg.src = qrApiUrl;
+            downloadBtn.href = qrApiUrl;
+        }
+
+        function renderAdminMusicList() {
+            const musicList = document.getElementById('adminMusicList');
+            musicList.innerHTML = '';
+            if (!appState.music || appState.music.length === 0) {
+                musicList.innerHTML = `<p class="text-xs text-sepiaBrown/60 italic">Nincs hozzáadott zene.</p>`;
+                return;
+            }
+
+            appState.music.forEach((track, idx) => {
+                const item = document.createElement('div');
+                item.className = "bg-white p-3 rounded-xl border border-blush-200 flex items-center justify-between gap-2 shadow-2xs";
+                item.innerHTML = `
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <i class="fa-solid fa-music text-blush-600 flex-shrink-0"></i>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-semibold text-sepiaBrown truncate">${track.title}</p>
+                            <p class="text-[10px] text-sepiaBrown/50 truncate">${track.url}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <button class="text-sepiaBrown/70 hover:text-sepiaBrown text-xs px-2 py-1 rounded hover:bg-blush-50 transition move-music-up" data-index="${idx}" ${idx === 0 ? 'disabled style="opacity:0.3"' : ''}><i class="fa-solid fa-arrow-up"></i></button>
+                        <button class="text-sepiaBrown/70 hover:text-sepiaBrown text-xs px-2 py-1 rounded hover:bg-blush-50 transition move-music-down" data-index="${idx}" ${idx === appState.music.length - 1 ? 'disabled style="opacity:0.3"' : ''}><i class="fa-solid fa-arrow-down"></i></button>
+                        <button class="text-red-500 hover:text-red-700 text-xs px-2.5 py-1.5 rounded-lg hover:bg-red-50 transition delete-music-btn" data-index="${idx}"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+                musicList.appendChild(item);
+            });
+
+            document.querySelectorAll('.move-music-up').forEach(btn => {
+                btn.onclick = (e) => {
+                    const idx = parseInt(e.currentTarget.getAttribute('data-index'));
+                    if (idx > 0) {
+                        const temp = appState.music[idx];
+                        appState.music[idx] = appState.music[idx - 1];
+                        appState.music[idx - 1] = temp;
+                        renderAdminMusicList();
+                        setupMusicSystem();
+                        saveAppState();
+                    }
+                };
+            });
+
+            document.querySelectorAll('.move-music-down').forEach(btn => {
+                btn.onclick = (e) => {
+                    const idx = parseInt(e.currentTarget.getAttribute('data-index'));
+                    if (idx < appState.music.length - 1) {
+                        const temp = appState.music[idx];
+                        appState.music[idx] = appState.music[idx + 1];
+                        appState.music[idx + 1] = temp;
+                        renderAdminMusicList();
+                        setupMusicSystem();
+                        saveAppState();
+                    }
+                };
+            });
+
+            document.querySelectorAll('.delete-music-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    const idx = parseInt(e.currentTarget.getAttribute('data-index'));
+                    appState.music.splice(idx, 1);
+                    renderAdminMusicList();
+                    setupMusicSystem();
+                    saveAppState();
+                };
+            });
+        }
+
+        document.getElementById('adminMusicFileInput').onchange = (e) => {
+            const files = e.target.files;
+            if (!files || files.length === 0) return;
+            
+            Array.from(files).forEach(file => {
+                if (!appState.music) appState.music = [];
+                appState.music.push({
+                    id: 'm-' + Date.now() + Math.random(),
+                    title: file.name.replace(/\.[^/.]+$/, ""),
+                    url: file.name
+                });
+                renderAdminMusicList();
+                setupMusicSystem();
+                showToast(`Zene hozzáadva: ${file.name} 🎵`);
+            });
+            e.target.value = '';
+        };
+
+        function renderAdminPhotos() {
+            const albumId = document.getElementById('adminPhotoAlbumSelect').value;
+            const album = appState.albums.find(a => a.id === albumId);
+            const container = document.getElementById('adminPhotosList');
+            container.innerHTML = '';
+
+            if (!album || !album.photos) return;
+
+            album.photos.forEach((photo, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-2.5 rounded-2xl border border-blush-200 flex items-center justify-between gap-2 shadow-2xs relative group";
+                card.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <img src="${photo.image}" class="w-14 h-14 object-cover rounded-xl border border-blush-100 flex-shrink-0" onerror="this.src='https://placehold.co/100x100/f9f0f0/bd7373?text=Foto'">
+                        <span class="text-xs font-semibold text-sepiaBrown">${idx + 1}. kép</span>
+                    </div>
+                    <button class="text-red-500 hover:text-red-700 text-sm p-2 rounded-lg hover:bg-red-50 transition delete-photo-btn" data-album-id="${albumId}" data-index="${idx}"><i class="fa-solid fa-trash"></i></button>
+                `;
+                container.appendChild(card);
+            });
+
+            document.querySelectorAll('.delete-photo-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    const albId = e.currentTarget.getAttribute('data-album-id');
+                    const idx = parseInt(e.currentTarget.getAttribute('data-index'));
+                    const alb = appState.albums.find(a => a.id === albId);
+                    if (alb && alb.photos) {
+                        alb.photos.splice(idx, 1);
+                        renderAdminPhotos();
+                    }
+                };
+            });
+        }
+
+        document.getElementById('adminPhotoFileInput').onchange = async (e) => {
+            const files = e.target.files;
+            if (!files || files.length === 0) return;
+
+            const albumId = document.getElementById('adminPhotoAlbumSelect').value;
+            const album = appState.albums.find(a => a.id === albumId);
+            if (!album) return;
+
+            const apiKey = (appState.settings && appState.settings.imgbbApiKey) ? appState.settings.imgbbApiKey.trim() : "bb8f8bd5b3ff239a4b765f907cd805b8";
+
+            showToast("Képek feltöltése a felhőbe (HD minőségben)... ☁️");
+
+            for (let file of Array.from(files)) {
+                try {
+                    let photoUrl = await uploadToImgBB(file, apiKey);
+
+                    if (!album.photos) album.photos = [];
+                    album.photos.push({
+                        id: 'p-' + Date.now() + Math.random(),
+                        image: photoUrl
+                    });
+                } catch (err) {
+                    console.error("Feltöltési hiba:", err);
+                    showToast("⚠️ Hiba egy kép feltöltése során.");
+                }
+            }
+            renderAdminPhotos();
+            showToast(`${files.length} kép sikeresen hozzáadva! 📸`);
+            e.target.value = '';
+        };
+
+        document.getElementById('addNewAlbumBtn').onclick = () => {
+            appState.albums.push({
+                id: 'alb-' + Date.now(),
+                title: 'Új Emlék Album',
+                description: 'Ide írhatod az album leírását...',
+                cover: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80',
+                dateRange: '2025',
+                photos: []
+            });
+            populateAdminDashboard();
+        };
+
+        document.getElementById('saveCountdownSettingsBtn').onclick = () => {
+            appState.settings.countdownLabel = document.getElementById('adminCdLabelInput').value;
+            appState.settings.countdownDate = document.getElementById('adminCdDateInput').value;
+            saveAppState();
+            showToast("Visszaszámláló frissítve!");
+        };
+
+        document.getElementById('saveWebsiteTextBtn').onclick = async () => {
+            collectAllInputsData();
+            await saveAppState();
+            renderHeaderAndTexts();
+        };
+
+        function collectAllInputsData() {
+            document.querySelectorAll('.album-title-input').forEach(input => {
+                const idx = parseInt(input.getAttribute('data-index'));
+                if (appState.albums[idx]) appState.albums[idx].title = input.value;
+            });
+            document.querySelectorAll('.album-desc-input').forEach(input => {
+                const idx = parseInt(input.getAttribute('data-index'));
+                if (appState.albums[idx]) appState.albums[idx].description = input.value;
+            });
+            document.querySelectorAll('.album-cover-input').forEach(input => {
+                const idx = parseInt(input.getAttribute('data-index'));
+                if (appState.albums[idx]) appState.albums[idx].cover = input.value;
+            });
+
+            document.querySelectorAll('.letter-title-input').forEach(input => {
+                const idx = parseInt(input.getAttribute('data-index'));
+                if (appState.letters && appState.letters[idx]) appState.letters[idx].title = input.value;
+            });
+            document.querySelectorAll('.letter-content-input').forEach(input => {
+                const idx = parseInt(input.getAttribute('data-index'));
+                if (appState.letters && appState.letters[idx]) appState.letters[idx].content = input.value;
+            });
+
+            const opTitle = document.getElementById('adminOpeningTitleInput');
+            const opSub = document.getElementById('adminOpeningSubtitleInput');
+            const opBtn = document.getElementById('adminOpeningBtnInput');
+            const opFoot = document.getElementById('adminOpeningFooterInput');
+
+            const mainTitle = document.getElementById('adminMainTitleInput');
+            const mainSubtitle = document.getElementById('adminMainSubtitleInput');
+
+            const letTitle = document.getElementById('adminLettersTitleInput');
+            const letSub = document.getElementById('adminLettersSubtitleInput');
+
+            const cdLabel = document.getElementById('adminCdLabelInput');
+            const cdDate = document.getElementById('adminCdDateInput');
+
+            if (!appState.settings) appState.settings = {};
+
+            if (opTitle) appState.settings.openingTitle = opTitle.value;
+            if (opSub) appState.settings.openingSubtitle = opSub.value;
+            if (opBtn) appState.settings.openingBtnText = opBtn.value;
+            if (opFoot) appState.settings.openingFooter = opFoot.value;
+
+            if (mainTitle) appState.settings.mainTitle = mainTitle.value;
+            if (mainSubtitle) appState.settings.mainSubtitle = mainSubtitle.value;
+
+            if (letTitle) appState.settings.lettersTitle = letTitle.value;
+            if (letSub) appState.settings.lettersSubtitle = letSub.value;
+
+            if (cdLabel) appState.settings.countdownLabel = cdLabel.value;
+            if (cdDate) appState.settings.countdownDate = cdDate.value;
+        }
+
+        document.getElementById('saveAllChangesBtn').onclick = async () => {
+            collectAllInputsData();
+            await saveAppState();
+            renderHeaderAndTexts();
+            renderAlbumsGrid();
+            renderLoveLettersGrid();
+            initCountdown();
+            adminModal.classList.add('hidden');
+        };
+
+        document.getElementById('homeBtn').onclick = () => {
+            navAlbumsTab.click();
+        };
+
+        window.onload = () => {
+            initFloatingParticles();
+            startOpeningAnimation();
+            initFirebase();
+        };
+    </script>
+</body>
+</html>
