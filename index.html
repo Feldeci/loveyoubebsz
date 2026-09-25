@@ -749,7 +749,7 @@
                 }
 
                 currentUser = auth.currentUser;
-                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'memoryBookDataV2');
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'memoryBookDataV2', 'default');
                 
                 onSnapshot(docRef, (docSnap) => {
                     if (docSnap.exists()) {
