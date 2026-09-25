@@ -793,7 +793,7 @@
         async function saveAppState() {
             if (db && currentUser) {
                 try {
-                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'memoryBookDataV2');
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'memoryBookDataV2', 'default');
                     await setDoc(docRef, { state: appState });
                     showToast("Sikeres mentés a felhőbe! ☁️❤️");
                     return;
